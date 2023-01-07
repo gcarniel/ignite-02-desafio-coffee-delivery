@@ -1,14 +1,24 @@
-import { HeaderContainer } from './styles'
+import { Cart, City, HeaderContainer } from './styles'
 import logo from '../../assets/logo.svg'
+import { NavLink } from 'react-router-dom'
+import { MapPin, ShoppingCart } from 'phosphor-react'
 
 export function Header() {
   return (
     <HeaderContainer>
-      <img style={{ height: 40 }} src={logo} alt="" />
-      <div>
-        <span>cidade</span>
-        <span>carrinho</span>
-      </div>
+      <NavLink to={'/'}>
+        <img style={{ height: 40 }} src={logo} alt="" />
+      </NavLink>
+
+      <nav style={{ display: 'flex' }}>
+        <City>
+          <MapPin weight="fill" size={22} />
+          <span>Maringa, PR</span>
+        </City>
+        <Cart>
+          <ShoppingCart weight="fill" size={22} />
+        </Cart>
+      </nav>
     </HeaderContainer>
   )
 }
