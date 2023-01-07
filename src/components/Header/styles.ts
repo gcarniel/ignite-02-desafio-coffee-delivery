@@ -42,4 +42,12 @@ export const Cart = styled.div`
 
   color: ${(props) => props.theme['yellow-dark']};
   background-color: ${(props) => props.theme['yellow-light']};
+
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    color: ${(props) => props.theme['yellow-light']};
+    background-color: ${(props) => props.theme['yellow-dark']};
+  }
 `

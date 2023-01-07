@@ -82,12 +82,23 @@ export const Actions = styled.button`
   cursor: pointer;
 
   padding: 0.5rem;
+  border-radius: 6px;
+
+  transition: all ease-in-out 0.3s;
+
+  &:hover {
+    color: ${(props) => props.theme['purple-dark']};
+  }
 `
 
 export const ButtonCart = styled(Actions)`
   border-radius: 10px;
   height: 2.375rem;
   background-color: ${(props) => props.theme['purple-dark']};
+
+  &:hover {
+    background-color: ${(props) => props.theme['purple-medium']};
+  }
 `
 
 export const Quantity = styled.div`
