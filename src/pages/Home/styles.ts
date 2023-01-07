@@ -12,6 +12,7 @@ export const HomeContainer = styled.div`
 
 export const ProductList = styled.main`
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 2.5rem;
+  gap: 2rem;
 `
