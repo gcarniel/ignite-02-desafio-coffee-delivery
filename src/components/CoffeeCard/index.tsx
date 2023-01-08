@@ -1,12 +1,11 @@
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { Quantity } from '../Quantity'
 import {
-  Actions,
   ButtonCart,
   CoffeeCardContainer,
   Description,
   Name,
   Price,
-  Quantity,
   SaleContainer,
   Types,
 } from './styles'
@@ -43,15 +42,7 @@ export function CoffeeCard({
           <span style={{ fontSize: '.75rem' }}> R$ </span>
           <Price>{price.toFixed(2).replace('.', ',')}</Price>
         </div>
-        <Quantity>
-          <Actions>
-            <Minus size={16} weight="bold" />
-          </Actions>
-          <span>1</span>
-          <Actions>
-            <Plus size={16} weight="bold" />
-          </Actions>
-        </Quantity>
+        <Quantity />
         <div>
           <ButtonCart>
             <ShoppingCart weight="fill" color="white" size={22} />
