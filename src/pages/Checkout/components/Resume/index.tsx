@@ -13,6 +13,7 @@ import {
 import { items } from '../../../../data/items'
 import { Quantity } from '../../../../components/Quantity'
 import { Trash } from 'phosphor-react'
+import { Totals } from './components/Total'
 
 export function Resume() {
   const data = items.slice(1, 3)
@@ -34,7 +35,11 @@ export function Resume() {
                     <span>
                       <Quantity />
                     </span>
-                    <Button>
+                    <Button
+                      color="base-text"
+                      bgColor="base-button"
+                      hoverColor="base-hover"
+                    >
                       <Trash size={16} />
                       Remover
                     </Button>
@@ -44,6 +49,8 @@ export function Resume() {
             )
           })}
         </ItemWrapper>
+
+        <Totals />
       </CartResume>
     </ResumeContainer>
   )

@@ -64,9 +64,27 @@ export const ItemInformation = styled.div`
 export const ItemActions = styled.div`
   span > div {
     height: 2rem;
+    font-size: 1rem;
   }
 `
-export const Button = styled.button`
+
+const BUTTONS_COLORS = {
+  'yellow-medium': 'yellow-medium',
+  'yellow-dark': 'yellow-dark',
+  'purple-medium': 'purple-medium',
+  'base-button': 'base-button',
+  'base-text': 'base-text',
+  'base-hover': 'base-hover',
+  'base-white': 'base-white',
+} as const
+
+interface ButtonsProps {
+  color: keyof typeof BUTTONS_COLORS
+  bgColor: keyof typeof BUTTONS_COLORS
+  hoverColor: keyof typeof BUTTONS_COLORS
+}
+
+export const Button = styled.button<ButtonsProps>`
   display: flex;
   align-items: center;
 
@@ -83,10 +101,12 @@ export const Button = styled.button`
   outline: 0;
   border: 0;
 
-  background-color: ${(props) => props.theme['base-button']};
+  color: ${(props) => props.theme[BUTTONS_COLORS[props.color]]};
+  background-color: ${(props) => props.theme[BUTTONS_COLORS[props.bgColor]]};
 
   &:hover {
-    background-color: ${(props) => props.theme['base-hover']};
+    background-color: ${(props) =>
+      props.theme[BUTTONS_COLORS[props.hoverColor]]};
   }
 
   &:focus,
