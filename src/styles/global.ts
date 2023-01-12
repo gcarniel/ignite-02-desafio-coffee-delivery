@@ -7,20 +7,20 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-/* *::-webkit-scrollbar {
-  width: 12px;
+*::-webkit-scrollbar {
+  width: 10px;
 }
 
 *::-webkit-scrollbar-track {
-  background: ${(props) => props.theme};
+  background: ${(props) => props.theme['purple-light']};
   border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: ${(props) => props.theme};
+  background-color: ${(props) => props.theme['purple-medium']};
   border-radius: 10px;
-  border: 3px solid ${(props) => props.theme};
-} */
+  border: 2px solid ${(props) => props.theme['purple-light']};
+}
 
   :focus {
     outline: none;

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const IntroContainer = styled.div`
-  height: 34rem;
+  min-height: 34rem;
 
   display: flex;
   justify-content: space-between;

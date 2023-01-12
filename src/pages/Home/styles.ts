@@ -15,5 +15,5 @@ export const ProductList = styled.main`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
-  width: 1072px;
+  max-width: 1072px;
 `
