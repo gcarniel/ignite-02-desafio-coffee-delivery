@@ -3,9 +3,7 @@ import styled from 'styled-components'
 export const SuccessContainer = styled.main`
   height: calc(100vh - 6.5rem);
 
-  display: flex;
   margin-top: 5rem;
-  justify-content: space-between;
 
   h1 {
     font-family: 'Baloo 2';
@@ -19,14 +17,22 @@ export const SuccessContainer = styled.main`
     margin-bottom: 2.5rem;
   }
 
-  section > svg {
-    width: 492px;
-    height: 293px;
+  section > h1 {
+    background-color: red;
+  }
+
+  section > img {
+    max-width: 30.75rem;
   }
 `
 
+export const Details = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
 export const BorderWrapper = styled.div`
-  width: 526px;
+  max-width: 32.87rem;
   height: 270px;
 
   position: relative;
@@ -51,4 +57,17 @@ export const SaleDetail = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`
+
+export const Item = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  span + span {
+    font-weight: 700;
+  }
+`
+
+export const Address = styled.span`
+  font-weight: 700;
 `
