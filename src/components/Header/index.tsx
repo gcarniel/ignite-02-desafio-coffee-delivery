@@ -1,9 +1,12 @@
-import { Cart, City, HeaderContainer } from './styles'
+import { Cart, CartQuantityItem, City, HeaderContainer } from './styles'
 import logo from '../../assets/logo.svg'
 import { NavLink } from 'react-router-dom'
 import { MapPin, ShoppingCart } from 'phosphor-react'
+import { useCart } from '../../hooks/useCart'
 
 export function Header() {
+  const { cart } = useCart()
+  const quantityItems = cart.items.reduce((acc, cur) => acc + cur.quantity, 0)
   return (
     <HeaderContainer>
       <NavLink to={'/'}>
@@ -17,6 +20,7 @@ export function Header() {
         </City>
         <NavLink to={'/checkout'}>
           <Cart>
+            <CartQuantityItem>{quantityItems}</CartQuantityItem>
             <ShoppingCart weight="fill" size={22} />
           </Cart>
         </NavLink>

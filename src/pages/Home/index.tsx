@@ -6,9 +6,6 @@ import { useCart } from '../../hooks/useCart'
 import { HomeContainer, ProductList } from './styles'
 
 export function PageHome() {
-  const { total } = useCart()
-
-  console.log(total)
   return (
     <HomeContainer>
       <Intro />

@@ -1,4 +1,6 @@
 import { ShoppingCart } from 'phosphor-react'
+import { useState } from 'react'
+import { useCart } from '../../hooks/useCart'
 import { Quantity } from '../Quantity'
 import {
   ButtonCart,
@@ -11,7 +13,7 @@ import {
 } from './styles'
 
 interface CoffeeCardProps {
-  id?: string
+  id: string
   name: string
   image: string
   types: string[]
@@ -20,12 +22,37 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({
+  id,
   name,
   image,
   types,
   description,
   price,
 }: CoffeeCardProps) {
+  const [quantity, setQuantity] = useState(0)
+  const { addCoffeeToCart } = useCart()
+
+  const incrementQuantity = () => {
+    setQuantity((prev) => prev + 1)
+  }
+  const decrementQuantity = () => {
+    setQuantity((prev) => {
+      if (prev === 0) return 0
+      return prev - 1
+    })
+  }
+
+  const handleAddItem = () => {
+    if (quantity <= 0) return
+
+    addCoffeeToCart({
+      id,
+      name,
+      price,
+      quantity,
+    })
+  }
+
   return (
     <CoffeeCardContainer>
       <img src={image} alt="" />
@@ -42,9 +69,13 @@ export function CoffeeCard({
           <span style={{ fontSize: '.75rem' }}> R$ </span>
           <Price>{price.toFixed(2).replace('.', ',')}</Price>
         </div>
-        <Quantity />
+        <Quantity
+          quantity={quantity}
+          decrementQuantity={decrementQuantity}
+          incrementQuantity={incrementQuantity}
+        />
         <div>
-          <ButtonCart>
+          <ButtonCart onClick={handleAddItem}>
             <ShoppingCart weight="fill" color="white" size={22} />
           </ButtonCart>
         </div>

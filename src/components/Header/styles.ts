@@ -33,6 +33,7 @@ export const City = styled.div`
 `
 
 export const Cart = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,4 +51,28 @@ export const Cart = styled.div`
     color: ${(props) => props.theme['yellow-light']};
     background-color: ${(props) => props.theme['yellow-dark']};
   }
+`
+
+export const CartQuantityItem = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  position: absolute;
+  right: -8.35px;
+  top: -8px;
+  border-radius: 50%;
+
+  width: 20px;
+  height: 20px;
+
+  font-size: 0.75rem;
+  text-align: center;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+
+  background-color: ${(props) => props.theme['yellow-dark']};
+  color: ${(props) => props.theme['base-white']};
 `

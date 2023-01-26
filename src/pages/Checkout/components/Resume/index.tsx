@@ -24,7 +24,7 @@ export function Resume() {
         <ItemWrapper>
           {data.map((d) => {
             return (
-              <Item>
+              <Item key={d.id}>
                 <img src={d.image} width={64} alt="" />
                 <ItemDetails>
                   <ItemInformation>
