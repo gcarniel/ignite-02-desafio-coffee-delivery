@@ -2,7 +2,6 @@ import { CoffeeCard } from '../../components/CoffeeCard'
 import { Intro } from '../../components/Intro'
 
 import { items } from '../../data/items'
-import { useCart } from '../../hooks/useCart'
 import { HomeContainer, ProductList } from './styles'
 
 export function PageHome() {

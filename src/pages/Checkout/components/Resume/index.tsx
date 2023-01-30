@@ -14,9 +14,33 @@ import { items } from '../../../../data/items'
 import { Quantity } from '../../../../components/Quantity'
 import { Trash } from 'phosphor-react'
 import { Totals } from './components/Total'
+import { useState } from 'react'
+import { useCart } from '../../../../hooks/useCart'
 
 export function Resume() {
-  const data = items.slice(1, 3)
+  const [quantity, setQuantity] = useState(0)
+  const { cart } = useCart()
+
+  const incrementQuantity = () => {
+    setQuantity((prev) => prev + 1)
+  }
+  const decrementQuantity = () => {
+    setQuantity((prev) => {
+      if (prev === 0) return 0
+      return prev - 1
+    })
+  }
+
+  const data = cart.items.map((item) => {
+    const itemDetails = items.find((d) => d.id === item.id)
+    console.log({ itemDetails })
+    return {
+      ...itemDetails,
+      ...item,
+    }
+  })
+
+  console.log(data)
   return (
     <ResumeContainer>
       <Title>Cafés selecionados</Title>
@@ -33,7 +57,11 @@ export function Resume() {
                   </ItemInformation>
                   <ItemActions>
                     <span>
-                      <Quantity />
+                      <Quantity
+                        quantity={d.quantity}
+                        decrementQuantity={decrementQuantity}
+                        incrementQuantity={incrementQuantity}
+                      />
                     </span>
                     <Button
                       color="base-text"
