@@ -21,6 +21,7 @@ export const ItemWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   padding: 1rem 2.5rem;
+  min-width: 400px;
 `
 
 export const Item = styled.li`

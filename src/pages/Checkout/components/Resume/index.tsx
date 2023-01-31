@@ -14,59 +14,59 @@ import { items } from '../../../../data/items'
 import { Quantity } from '../../../../components/Quantity'
 import { Trash } from 'phosphor-react'
 import { Totals } from './components/Total'
-import { useState } from 'react'
 import { useCart } from '../../../../hooks/useCart'
+import { CartItem } from '../../../../Interfaces/CartItem'
 
 export function Resume() {
-  const [quantity, setQuantity] = useState(0)
-  const { cart } = useCart()
+  const { cart, increaseItem, decreaseItem, removeCoffeeFromCart } = useCart()
 
-  const incrementQuantity = () => {
-    setQuantity((prev) => prev + 1)
+  const increaseQuantity = (id: string) => {
+    increaseItem(id)
   }
-  const decrementQuantity = () => {
-    setQuantity((prev) => {
-      if (prev === 0) return 0
-      return prev - 1
-    })
+
+  const decreaseQuantity = (id: string) => {
+    decreaseItem(id)
+  }
+
+  const removeItem = (item: CartItem) => {
+    removeCoffeeFromCart(item)
   }
 
   const data = cart.items.map((item) => {
     const itemDetails = items.find((d) => d.id === item.id)
-    console.log({ itemDetails })
     return {
       ...itemDetails,
       ...item,
     }
   })
 
-  console.log(data)
   return (
     <ResumeContainer>
       <Title>Cafés selecionados</Title>
       <CartResume>
         <ItemWrapper>
-          {data.map((d) => {
+          {data?.map((item) => {
             return (
-              <Item key={d.id}>
-                <img src={d.image} width={64} alt="" />
+              <Item key={item.id}>
+                <img src={item.image} width={64} alt="" />
                 <ItemDetails>
                   <ItemInformation>
-                    <span>{d.name}</span>
-                    <span>R$ {d.price.toFixed(2).replace('.', ',')}</span>
+                    <span>{item.name}</span>
+                    <span>R$ {item.price.toFixed(2).replace('.', ',')}</span>
                   </ItemInformation>
                   <ItemActions>
                     <span>
                       <Quantity
-                        quantity={d.quantity}
-                        decrementQuantity={decrementQuantity}
-                        incrementQuantity={incrementQuantity}
+                        quantity={item.quantity}
+                        decrementQuantity={() => decreaseQuantity(item.id)}
+                        incrementQuantity={() => increaseQuantity(item.id)}
                       />
                     </span>
                     <Button
                       color="base-text"
                       bgColor="base-button"
                       hoverColor="base-hover"
+                      onClick={() => removeItem(item)}
                     >
                       <Trash size={16} />
                       Remover

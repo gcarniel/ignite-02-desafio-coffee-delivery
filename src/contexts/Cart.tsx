@@ -1,7 +1,12 @@
 import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { Cart } from '../Interfaces/Cart'
 import { CartItem } from '../Interfaces/CartItem'
-import { addItemToCart } from '../reducers/cart/actions'
+import {
+  addItemToCart,
+  decreaseItemFromCart,
+  increaseItemFromCart,
+  removeItemFromCart,
+} from '../reducers/cart/actions'
 import { cartItemsReducer } from '../reducers/cart/reducer'
 
 interface CartContextProviderProps {
@@ -14,8 +19,9 @@ interface CreateContextType {
   total: number
   deliveryPrice: number
   addCoffeeToCart: (item: CartItem) => void
-  incrementItem?: (item: CartItem, quantity: number) => void
-  decrementItem?: (item: CartItem, quantity: number) => void
+  removeCoffeeFromCart: (item: CartItem) => void
+  increaseItem: (id: string) => void
+  decreaseItem: (id: string) => void
 }
 
 const initialState = {
@@ -31,23 +37,35 @@ export const CartContext = createContext({} as CreateContextType)
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, dispatch] = useReducer(cartItemsReducer, initialState)
 
-  const incrementItem = (item: CartItem, quantity: number) => {}
+  const increaseItem = (id: string) => {
+    dispatch(increaseItemFromCart(id))
+  }
 
-  const decrementItem = (item: CartItem, quantity: number) => {}
+  const decreaseItem = (id: string) => {
+    dispatch(decreaseItemFromCart(id))
+  }
 
   const addCoffeeToCart = (item: CartItem) => {
     dispatch(addItemToCart(item))
   }
-  console.log(cart)
 
-  const deliveryPrice = 1
-  const subtotal = 9
-  const total = 10
+  const removeCoffeeFromCart = (item: CartItem) => {
+    dispatch(removeItemFromCart(item))
+  }
 
   useEffect(() => {}, [])
   return (
     <CartContext.Provider
-      value={{ deliveryPrice, cart, subtotal, total, addCoffeeToCart }}
+      value={{
+        deliveryPrice: cart.deliveryPrice,
+        cart,
+        subtotal: cart.subtotal,
+        total: cart.total,
+        addCoffeeToCart,
+        removeCoffeeFromCart,
+        increaseItem,
+        decreaseItem,
+      }}
     >
       {children}
     </CartContext.Provider>

@@ -44,6 +44,34 @@ export function cartItemsReducer(state: Cart, action: any) {
         ),
       }
 
+    case ActionTypes.INCREASE_ITEM_TO_CART:
+      return {
+        ...state,
+        items: state.items.map((item: CartItem) => {
+          if (item.id === action.payload.itemId) {
+            return {
+              ...item,
+              quantity: item.quantity ? item.quantity + 1 : 1,
+            }
+          }
+          return item
+        }),
+      }
+
+    case ActionTypes.DECREASE_ITEM_TO_CART:
+      return {
+        ...state,
+        items: state.items.map((item: CartItem) => {
+          if (item.id === action.payload.itemId) {
+            return {
+              ...item,
+              quantity: item.quantity <= 1 ? 1 : item.quantity - 1,
+            }
+          }
+          return item
+        }),
+      }
+
     default:
       return state
   }

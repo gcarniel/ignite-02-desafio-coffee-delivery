@@ -1,8 +1,8 @@
 import { CartItem } from '../../Interfaces/CartItem'
 
 export enum ActionTypes {
-  INCREMENT_ITEM_TO_CART = 'INCREMENT_ITEM_TO_CART',
-  DECREMENT_ITEM_TO_CART = 'DECREMENT_ITEM_TO_CART',
+  INCREASE_ITEM_TO_CART = 'INCREASE_ITEM_TO_CART',
+  DECREASE_ITEM_TO_CART = 'DECREASE_ITEM_TO_CART',
   ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART',
   REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART',
 }
@@ -13,9 +13,24 @@ export function addItemToCart(item: CartItem) {
     payload: { item },
   }
 }
+
 export function removeItemFromCart(item: CartItem) {
   return {
-    type: ActionTypes.ADD_ITEM_TO_CART,
-    payload: item.id,
+    type: ActionTypes.REMOVE_ITEM_FROM_CART,
+    payload: { id: item.id },
+  }
+}
+
+export function increaseItemFromCart(itemId: string) {
+  return {
+    type: ActionTypes.INCREASE_ITEM_TO_CART,
+    payload: { itemId },
+  }
+}
+
+export function decreaseItemFromCart(itemId: string) {
+  return {
+    type: ActionTypes.DECREASE_ITEM_TO_CART,
+    payload: { itemId },
   }
 }
