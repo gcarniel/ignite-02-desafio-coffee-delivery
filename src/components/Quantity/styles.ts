@@ -29,4 +29,11 @@ export const QuantityContainer = styled.div`
   margin-right: 0.5rem;
 
   background-color: ${(props) => props.theme['base-button']};
+
+  & span {
+    font-family: 'Roboto';
+    font-size: 1rem;
+    padding: 0.5rem 0;
+    align-self: baseline;
+  }
 `
