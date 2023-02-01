@@ -14,10 +14,10 @@ export function addItemToCart(item: CartItem) {
   }
 }
 
-export function removeItemFromCart(item: CartItem) {
+export function removeItemFromCart(itemId: CartItem) {
   return {
     type: ActionTypes.REMOVE_ITEM_FROM_CART,
-    payload: { id: item.id },
+    payload: { itemId },
   }
 }
 

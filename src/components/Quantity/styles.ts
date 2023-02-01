@@ -12,6 +12,7 @@ export const Actions = styled.button`
   border-radius: 6px;
 
   transition: all ease-in-out 0.3s;
+  align-self: stretch;
 
   &:hover {
     color: ${(props) => props.theme['purple-dark']};

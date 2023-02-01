@@ -2,6 +2,7 @@ import { ShoppingCart } from 'phosphor-react'
 import { useState } from 'react'
 import { useCart } from '../../hooks/useCart'
 import { Quantity } from '../Quantity'
+import { moneyFormat } from '../../helpers/format-money'
 import {
   ButtonCart,
   CoffeeCardContainer,
@@ -67,7 +68,7 @@ export function CoffeeCard({
       <SaleContainer>
         <div>
           <span style={{ fontSize: '.75rem' }}> R$ </span>
-          <Price>{price.toFixed(2).replace('.', ',')}</Price>
+          <Price>{moneyFormat(price)}</Price>
         </div>
         <Quantity
           quantity={quantity}

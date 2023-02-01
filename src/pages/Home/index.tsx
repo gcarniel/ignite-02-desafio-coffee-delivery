@@ -7,7 +7,7 @@ import { HomeContainer, ProductList } from './styles'
 export function PageHome() {
   return (
     <HomeContainer>
-      <Intro />
+      {/* <Intro /> */}
       <h1>Nossos Cafés</h1>
 
       <ProductList>

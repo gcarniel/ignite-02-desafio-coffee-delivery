@@ -40,7 +40,7 @@ export function cartItemsReducer(state: Cart, action: any) {
       return {
         ...state,
         items: state.items.filter(
-          (item: CartItem) => item.id !== action.payload.id,
+          (item: CartItem) => item.id !== action.payload.itemId,
         ),
       }
 
