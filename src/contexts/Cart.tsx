@@ -50,7 +50,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   }
 
   const removeCoffeeFromCart = (item: CartItem) => {
-    dispatch(removeItemFromCart(item))
+    dispatch(removeItemFromCart(item.id))
   }
 
   useEffect(() => {}, [])

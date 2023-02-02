@@ -3,6 +3,7 @@ import { CartItem } from '../../Interfaces/CartItem'
 import { ActionTypes } from './actions'
 
 export function cartItemsReducer(state: Cart, action: any) {
+  const { subtotal, total } = calculateTotals(state, action)
   switch (action.type) {
     case ActionTypes.ADD_ITEM_TO_CART:
       const itemIncluded = state.items.some(
@@ -20,20 +21,16 @@ export function cartItemsReducer(state: Cart, action: any) {
                 }
               : item,
           ),
-          subtotal:
-            state.subtotal +
-            action.payload.item.quantity * action.payload.item.price,
-          total:
-            state.subtotal +
-            action.payload.item.quantity * action.payload.item.price,
+          total,
+          subtotal,
         }
       }
 
       return {
         ...state,
         items: [...state.items, action.payload.item],
-        subtotal: action.payload.item.quantity * action.payload.item.price,
-        total: action.payload.item.quantity * action.payload.item.price,
+        total,
+        subtotal,
       }
 
     case ActionTypes.REMOVE_ITEM_FROM_CART:
@@ -42,6 +39,8 @@ export function cartItemsReducer(state: Cart, action: any) {
         items: state.items.filter(
           (item: CartItem) => item.id !== action.payload.itemId,
         ),
+        total,
+        subtotal,
       }
 
     case ActionTypes.INCREASE_ITEM_TO_CART:
@@ -56,6 +55,8 @@ export function cartItemsReducer(state: Cart, action: any) {
           }
           return item
         }),
+        total,
+        subtotal,
       }
 
     case ActionTypes.DECREASE_ITEM_TO_CART:
@@ -70,9 +71,61 @@ export function cartItemsReducer(state: Cart, action: any) {
           }
           return item
         }),
+        total,
+        subtotal,
       }
 
     default:
       return state
+  }
+}
+
+const calculateTotals = (state: any, action: any) => {
+  let total = state.total
+  let subtotal = state.subtotal
+  let item = null
+
+  if (action.payload.itemId) {
+    item = state.items.find(
+      (item: CartItem) => item.id === action.payload.itemId,
+    )
+  }
+  switch (action.type) {
+    case ActionTypes.ADD_ITEM_TO_CART:
+      const itemFounded = state.items.find(
+        (item: CartItem) => item.id === action.payload.item.id,
+      )
+      subtotal += itemFounded
+        ? itemFounded.price * itemFounded.quantity
+        : action.payload.item.price * action.payload.item.quantity
+
+      total += itemFounded
+        ? itemFounded.price * itemFounded.quantity
+        : action.payload.item.price * action.payload.item.quantity
+      break
+    case ActionTypes.REMOVE_ITEM_FROM_CART:
+      subtotal -= item.price * item.quantity
+      total -= item.price * item.quantity
+      break
+
+    case ActionTypes.INCREASE_ITEM_TO_CART:
+      subtotal += item.price
+      total += item.price
+      break
+
+    case ActionTypes.DECREASE_ITEM_TO_CART:
+      if (item?.quantity === 1) {
+        total = item.price
+        subtotal = item.price
+        break
+      }
+      subtotal -= item.price
+      total -= item.price
+      break
+  }
+
+  return {
+    total,
+    subtotal,
   }
 }

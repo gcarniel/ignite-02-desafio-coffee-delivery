@@ -14,7 +14,7 @@ export function addItemToCart(item: CartItem) {
   }
 }
 
-export function removeItemFromCart(itemId: CartItem) {
+export function removeItemFromCart(itemId: string) {
   return {
     type: ActionTypes.REMOVE_ITEM_FROM_CART,
     payload: { itemId },
