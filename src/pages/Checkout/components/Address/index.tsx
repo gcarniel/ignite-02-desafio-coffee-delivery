@@ -15,6 +15,8 @@ export function Address() {
     state: '',
   })
 
+  const validNumberZip = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+
   const isValidBRZip = (zipCode: any) => {
     const pattern = /^[0-9]{5}[0-9]{3}$/
     return pattern.test(zipCode)
@@ -23,12 +25,11 @@ export function Address() {
   const handleZipCode = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
 
-    console.log(e)
+    const isValidCaracter = validNumberZip.includes(value.at(-1)!)
 
-    // const isValidCaracter = /[0-9]/.test(value.at(-1)!)
-    // if (!isValidCaracter) return
+    if (!isValidCaracter) return
 
-    if (value.length > 9) return
+    if (value.length > 8) return
 
     setAddress({
       ...address,
@@ -41,7 +42,7 @@ export function Address() {
   const fetchAddreesByZip = (zipCode: string) => {
     const result = isValidBRZip(zipCode)
 
-    console.log(result)
+    // console.log(result)
 
     if (!result) return
 
