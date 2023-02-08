@@ -14,6 +14,7 @@ interface AddressContextType {
     state: string
   }
   handleAddress: (address: AddressType) => void
+  isCompletedAddress: boolean
 }
 
 interface AddressType {
@@ -50,6 +51,8 @@ export function AddressContextProvider({
     )
   }
 
+  const isCompletedAddress = Object.values(address).every((field) => field)
+
   useEffect(() => {
     const addressLocal = localStorage.getItem('@-coffee-delivery-address')
 
@@ -59,7 +62,9 @@ export function AddressContextProvider({
   }, [])
 
   return (
-    <AddressContext.Provider value={{ address, handleAddress }}>
+    <AddressContext.Provider
+      value={{ address, handleAddress, isCompletedAddress }}
+    >
       {children}
     </AddressContext.Provider>
   )

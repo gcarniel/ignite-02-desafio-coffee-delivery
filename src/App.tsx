@@ -1,4 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css'
 
 import { ThemeProvider } from 'styled-components'
 import { defaultTheme } from './styles/themes/default'
@@ -7,6 +8,7 @@ import { Header } from './components/Header'
 import { Router } from './Router'
 import { CartContextProvider } from './contexts/Cart'
 import { AddressContextProvider } from './contexts/Address'
+import { ToastContainer } from 'react-toastify'
 
 export function App() {
   return (
@@ -14,6 +16,7 @@ export function App() {
       <BrowserRouter>
         <CartContextProvider>
           <AddressContextProvider>
+            <ToastContainer />
             <Router />
           </AddressContextProvider>
         </CartContextProvider>
