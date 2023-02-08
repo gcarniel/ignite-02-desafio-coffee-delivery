@@ -1,8 +1,14 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
+import { paymentTypes } from '../..'
 import { Header } from '../Address/styles'
 import { Button, ButtonsWrapper, PaymentContainer } from './styles'
 
-export function Payment() {
+interface PaymentProps {
+  payment: paymentTypes
+  onChangePayment: (payment: paymentTypes) => void
+}
+
+export function Payment({ payment, onChangePayment }: PaymentProps) {
   return (
     <PaymentContainer>
       <Header>
@@ -17,17 +23,26 @@ export function Payment() {
         </div>
       </Header>
       <ButtonsWrapper>
-        <Button>
+        <Button
+          onClick={() => onChangePayment('CREDIT')}
+          selected={payment === 'CREDIT'}
+        >
           <CreditCard size={16} />
           CARTÃO DE CRÉDITO
         </Button>
 
-        <Button>
+        <Button
+          onClick={() => onChangePayment('DEBIT')}
+          selected={payment === 'DEBIT'}
+        >
           <Money size={16} />
           CARTÃO DE DÉBITO
         </Button>
 
-        <Button>
+        <Button
+          onClick={() => onChangePayment('MONEY')}
+          selected={payment === 'MONEY'}
+        >
           <Bank size={16} />
           DINHEIRO
         </Button>

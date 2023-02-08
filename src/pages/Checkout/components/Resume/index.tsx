@@ -16,8 +16,13 @@ import { Trash } from 'phosphor-react'
 import { Totals } from './components/Total'
 import { useCart } from '../../../../hooks/useCart'
 import { CartItem } from '../../../../Interfaces/CartItem'
+import { paymentTypes } from '../..'
 
-export function Resume() {
+interface ResumeProps {
+  payment: paymentTypes
+}
+
+export function Resume({ payment }: ResumeProps) {
   const { cart, increaseItem, decreaseItem, removeCoffeeFromCart } = useCart()
 
   const increaseQuantity = (id: string) => {
@@ -78,7 +83,7 @@ export function Resume() {
           })}
         </ItemWrapper>
 
-        <Totals />
+        <Totals payment={payment} />
       </CartResume>
     </ResumeContainer>
   )

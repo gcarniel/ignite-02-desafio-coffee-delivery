@@ -9,8 +9,11 @@ export const ButtonsWrapper = styled.div`
   align-items: center;
   gap: 0.75rem;
 `
+interface ButtonProps {
+  selected: boolean
+}
 
-export const Button = styled.button`
+export const Button = styled.button<ButtonProps>`
   display: flex;
   align-items: center;
 
@@ -28,13 +31,19 @@ export const Button = styled.button`
   background-color: ${(props) => props.theme['base-button']};
 
   &:hover {
-    background-color: ${(props) => props.theme['base-hover']};
+    background-color: ${(props) =>
+      props.selected ? '' : props.theme['base-hover']};
   }
+
+  outline: ${(props) =>
+    props.selected ? `1px solid ${props.theme['purple-dark']}` : ''};
+  color: ${(props) => (props.selected ? props.theme['purple-dark'] : '')};
+  background-color: ${(props) =>
+    props.selected ? props.theme['purple-light'] : ''};
 
   &:focus,
   &:active {
-    box-shadow: 0 0 0 1px ${(props) => props.theme['purple-dark']};
-    background-color: ${(props) => props.theme['purple-light']};
+    box-shadow: none;
   }
 
   svg {
