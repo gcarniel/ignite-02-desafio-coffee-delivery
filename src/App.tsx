@@ -6,13 +6,16 @@ import { GlobalStyle } from './styles/global'
 import { Header } from './components/Header'
 import { Router } from './Router'
 import { CartContextProvider } from './contexts/Cart'
+import { AddressContextProvider } from './contexts/Address'
 
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <CartContextProvider>
-          <Router />
+          <AddressContextProvider>
+            <Router />
+          </AddressContextProvider>
         </CartContextProvider>
       </BrowserRouter>
       <GlobalStyle />

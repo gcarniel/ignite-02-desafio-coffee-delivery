@@ -3,17 +3,10 @@ import { useState } from 'react'
 import { AddressContainer, Header, Input, InputWrapper } from './styles'
 
 import { ChangeEvent } from 'react'
+import { useAddress } from '../../../../hooks/useAddress'
 
 export function Address() {
-  const [address, setAddress] = useState({
-    zip: '',
-    street: '',
-    number: '',
-    district: '',
-    complement: '',
-    city: '',
-    state: '',
-  })
+  const { address, handleAddress } = useAddress()
 
   const validNumberZip = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
@@ -31,7 +24,7 @@ export function Address() {
 
     if (value.length > 8) return
 
-    setAddress({
+    handleAddress({
       ...address,
       zip: value,
     })
@@ -42,17 +35,12 @@ export function Address() {
   const fetchAddreesByZip = (zipCode: string) => {
     const result = isValidBRZip(zipCode)
 
-    // console.log(result)
-
     if (!result) return
-
-    console.log(`${zipCode.slice(0, 5)}-${zipCode.slice(5, 8)}`)
 
     fetch(`https://viacep.com.br/ws/${zipCode}/json/`)
       .then((res) => res.json())
       .then((data: any) => {
-        console.log(data)
-        setAddress({
+        handleAddress({
           zip: `${zipCode.slice(0, 5)}-${zipCode.slice(5, 8)}`,
           street: data.logradouro,
           number: '',
@@ -68,7 +56,7 @@ export function Address() {
     e: ChangeEvent<HTMLInputElement>,
     field: string,
   ) => {
-    setAddress({
+    handleAddress({
       ...address,
       [field]: e.target.value,
     })
@@ -93,11 +81,11 @@ export function Address() {
           width={12.5}
           onChange={(e) => handleZipCode(e)}
           onFocus={(e) =>
-            setAddress({ ...address, zip: e.target.value.replace('-', '') })
+            handleAddress({ ...address, zip: e.target.value.replace('-', '') })
           }
           onBlur={(e) => {
             if (e.target.value.length === 8) {
-              setAddress({
+              handleAddress({
                 ...address,
                 zip: `${e.target.value.slice(0, 5)}-${e.target.value.slice(
                   5,
