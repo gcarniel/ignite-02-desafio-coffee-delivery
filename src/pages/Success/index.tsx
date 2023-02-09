@@ -10,8 +10,13 @@ import {
 import illustration from '../../assets/illustration.svg'
 import { Badge, BadgeWrapper } from '../../components/Intro/styles'
 import { CurrencyDollar, MapPin, Timer } from 'phosphor-react'
+import { useAddress } from '../../hooks/useAddress'
+import { usePayment } from '../../hooks/usePayment'
 
 export function PageSuccess() {
+  const { address } = useAddress()
+  const { payment } = usePayment()
+
   return (
     <SuccessContainer>
       <div>
@@ -27,7 +32,10 @@ export function PageSuccess() {
                   <MapPin weight="fill" size={32} />
                 </Badge>
                 <div>
-                  Entrega em <Address>xxxxxxxxxxxxxxxxxxxxxx</Address>
+                  Entrega em{' '}
+                  <Address>{`${address.street}, ${address.number}`}</Address>
+                  <br></br>
+                  {`${address.district} - ${address.city}, ${address.state}`}
                 </div>
               </BadgeWrapper>
 
@@ -37,7 +45,7 @@ export function PageSuccess() {
                 </Badge>
                 <Item>
                   <span>Previsão de entrega</span>
-                  <span>xxxxxxxxxxxx</span>
+                  <span>20m - 30m</span>
                 </Item>
               </BadgeWrapper>
 
@@ -47,7 +55,7 @@ export function PageSuccess() {
                 </Badge>
                 <Item>
                   <span>Pagamento na entrega</span>
-                  <span>xxxxxxxxxxxx</span>
+                  <span>{payment.label}</span>
                 </Item>
               </BadgeWrapper>
             </SaleDetail>

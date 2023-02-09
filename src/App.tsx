@@ -9,6 +9,7 @@ import { Router } from './Router'
 import { CartContextProvider } from './contexts/Cart'
 import { AddressContextProvider } from './contexts/Address'
 import { ToastContainer } from 'react-toastify'
+import { PaymentContextProvider } from './contexts/Payment'
 
 export function App() {
   return (
@@ -16,8 +17,10 @@ export function App() {
       <BrowserRouter>
         <CartContextProvider>
           <AddressContextProvider>
-            <ToastContainer />
-            <Router />
+            <PaymentContextProvider>
+              <ToastContainer />
+              <Router />
+            </PaymentContextProvider>
           </AddressContextProvider>
         </CartContextProvider>
       </BrowserRouter>

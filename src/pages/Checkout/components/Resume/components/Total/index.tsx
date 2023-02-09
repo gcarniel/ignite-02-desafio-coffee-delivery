@@ -5,17 +5,14 @@ import { useCart } from '../../../../../../hooks/useCart'
 import { ButtonConfirm, TotalRow, TotalRowBold, TotalWrapper } from './styles'
 
 import { toast } from 'react-toastify'
-import { paymentTypes } from '../../../..'
+import { usePayment } from '../../../../../../hooks/usePayment'
 
-interface TotalsProps {
-  payment: paymentTypes
-}
-
-export function Totals({ payment }: TotalsProps) {
+export function Totals() {
   const { cart, deliveryPrice, subtotal, total } = useCart()
   const { isCompletedAddress } = useAddress()
 
   const navigate = useNavigate()
+  const { payment } = usePayment()
 
   const isEmptyCart = cart.items.length === 0
 
