@@ -9,6 +9,7 @@ export const CheckoutContainer = styled.main`
 `
 
 export const FormContainer = styled(WrapperColumn)`
+  font-family: 'Roboto';
   width: 40rem;
 `
 

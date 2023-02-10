@@ -75,12 +75,26 @@ export function cartItemsReducer(state: Cart, action: any) {
         subtotal,
       }
 
+    case ActionTypes.CLEAR_CART:
+      return {
+        ...state,
+        items: [],
+
+        deliveryPrice: 0,
+      }
+
     default:
       return state
   }
 }
 
 const calculateTotals = (state: any, action: any) => {
+  if (action.type === ActionTypes.CLEAR_CART)
+    return {
+      subtotal: 0,
+      total: 0,
+    }
+
   let total = state.total
   let subtotal = state.subtotal
   let item = null

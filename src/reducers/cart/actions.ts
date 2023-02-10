@@ -5,6 +5,7 @@ export enum ActionTypes {
   DECREASE_ITEM_TO_CART = 'DECREASE_ITEM_TO_CART',
   ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART',
   REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART',
+  CLEAR_CART = 'CLEAR_CART',
 }
 
 export function addItemToCart(item: CartItem) {
@@ -32,5 +33,11 @@ export function decreaseItemFromCart(itemId: string) {
   return {
     type: ActionTypes.DECREASE_ITEM_TO_CART,
     payload: { itemId },
+  }
+}
+
+export function clearItemsFromCart() {
+  return {
+    type: ActionTypes.CLEAR_CART,
   }
 }

@@ -6,6 +6,7 @@ import {
   decreaseItemFromCart,
   increaseItemFromCart,
   removeItemFromCart,
+  clearItemsFromCart,
 } from '../reducers/cart/actions'
 import { cartItemsReducer } from '../reducers/cart/reducer'
 
@@ -22,6 +23,7 @@ interface CreateContextType {
   removeCoffeeFromCart: (item: CartItem) => void
   increaseItem: (id: string) => void
   decreaseItem: (id: string) => void
+  clearCart: () => void
 }
 
 const initialState = {
@@ -53,6 +55,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     dispatch(removeItemFromCart(item.id))
   }
 
+  const clearCart = () => {
+    dispatch(clearItemsFromCart())
+  }
+
   useEffect(() => {}, [])
   return (
     <CartContext.Provider
@@ -65,6 +71,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
         removeCoffeeFromCart,
         increaseItem,
         decreaseItem,
+        clearCart,
       }}
     >
       {children}

@@ -5,6 +5,8 @@ export const SuccessContainer = styled.main`
 
   margin-top: 5rem;
 
+  font-family: 'Roboto';
+
   h1 {
     font-family: 'Baloo 2';
     color: ${(props) => props.theme['yellow-dark']};

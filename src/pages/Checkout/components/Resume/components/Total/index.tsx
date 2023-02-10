@@ -13,6 +13,7 @@ export function Totals() {
 
   const navigate = useNavigate()
   const { payment } = usePayment()
+  const { clearCart } = useCart()
 
   const isEmptyCart = cart.items.length === 0
 
@@ -24,14 +25,15 @@ export function Totals() {
       return
     }
 
-    if (!payment) {
+    if (!payment.key) {
       toast.error('Informe um pagamento!', {
         position: toast.POSITION.TOP_CENTER,
       })
       return
     }
 
-    // validar pagamento
+    clearCart()
+
     navigate('/success')
   }
 

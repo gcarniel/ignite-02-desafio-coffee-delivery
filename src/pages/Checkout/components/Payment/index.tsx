@@ -1,5 +1,4 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
-import { paymentTypes } from '../..'
 import { usePayment } from '../../../../hooks/usePayment'
 import { Header } from '../Address/styles'
 import { Button, ButtonsWrapper, PaymentContainer } from './styles'

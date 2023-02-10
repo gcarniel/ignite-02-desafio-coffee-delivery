@@ -17,6 +17,8 @@ export function PageSuccess() {
   const { address } = useAddress()
   const { payment } = usePayment()
 
+  const timeRandom = Math.floor(Math.random() * 120)
+
   return (
     <SuccessContainer>
       <div>
@@ -45,7 +47,7 @@ export function PageSuccess() {
                 </Badge>
                 <Item>
                   <span>Previsão de entrega</span>
-                  <span>20m - 30m</span>
+                  <span>{`${timeRandom}m - ${timeRandom + 10}m`}</span>
                 </Item>
               </BadgeWrapper>
 
