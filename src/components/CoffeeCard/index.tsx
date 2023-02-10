@@ -30,8 +30,12 @@ export function CoffeeCard({
   description,
   price,
 }: CoffeeCardProps) {
-  const [quantity, setQuantity] = useState(0)
-  const { addCoffeeToCart } = useCart()
+  const { addCoffeeToCart, cart } = useCart()
+  const [quantity, setQuantity] = useState(() => {
+    const founded = cart.items.find((item) => item.id === id)
+
+    return founded ? founded.quantity : 0
+  })
 
   const incrementQuantity = () => {
     setQuantity((prev) => prev + 1)
