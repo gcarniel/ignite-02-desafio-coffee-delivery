@@ -19,7 +19,7 @@ export function Header() {
       <nav style={{ display: 'flex' }}>
         <City>
           <MapPin weight="fill" size={22} />
-          <span>{`${address.city}, ${address.state}`}</span>
+          {address?.city && <span>{`${address.city}, ${address.state}`}</span>}
         </City>
         <NavLink to={'/checkout'}>
           <Cart>
