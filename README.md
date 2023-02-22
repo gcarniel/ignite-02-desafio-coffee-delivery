@@ -1,7 +1,11 @@
-<h1 align="center"> Habits </h1>
+<h1 align="center"> Coffee Delivery </h1>
+
 
 <p align="center">
-NLW é um evento exclusivo e gratuito, promovido pela Rocketseat para ensino de tecnologias WEB. <br/>
+Este é mais um desafio proposto no curso IGNITE da Rocketseat. 
+<br/>
+Cada módulo é desenvolvido uma aplicação e após é proposto um desafio para testar os conhecimentos.
+<br/>
 </p>
 
 <p align="center">
